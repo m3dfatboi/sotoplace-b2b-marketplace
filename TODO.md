@@ -3,6 +3,8 @@
 ## 🎯 Текущий спринт
 
 ### ✅ Завершено в этой сессии (2026-03-02)
+
+**Frontend UI (100% готов):**
 - ✅ Инициализация frontend проекта (Next.js 14 + TypeScript + TailwindCSS)
 - ✅ Настройка дизайн-системы из Figma (цвета, шрифты, отступы)
 - ✅ Создание базовых UI компонентов (Button, Card)
@@ -17,12 +19,25 @@
 - ✅ KPI карточки для метрик
 - ✅ Header с поиском и уведомлениями
 - ✅ Дизайн-система v3
+- ✅ Главная страница полностью переработана и завершена
+
+**Backend Integration (100% готов):**
+- ✅ API Services (auth, orders, products, companies, users)
+- ✅ React Hooks (useAuth, useOrders, useProducts, useCompanies)
+- ✅ Axios interceptor с автоматическим refresh токенов
+- ✅ Обработка ошибок и 401 редиректы
+- ✅ SSR-safe localStorage проверки
+
+**Аутентификация (100% готов):**
+- ✅ Страница Login с валидацией
+- ✅ Страница Register с валидацией
+- ✅ Интеграция с backend auth endpoints
 
 ### 🔄 В процессе
-- [ ] **Интеграция frontend с backend API**
-  - Подключить реальные endpoints
-  - Настроить аутентификацию
-  - Обработка ошибок и loading states
+- [ ] **Тестирование интеграции с реальным backend**
+  - Запустить backend сервер
+  - Переключить USE_MOCK_DATA на false
+  - Протестировать все endpoints
 
 ### Следующие задачи
 - [ ] Интеграция frontend с backend API
