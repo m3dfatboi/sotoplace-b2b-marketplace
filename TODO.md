@@ -81,22 +81,23 @@
 ### Приоритет 4: Управление заказами (Критично)
 
 #### Order endpoints
-- [ ] POST /api/v1/orders - создать заказ
-- [ ] GET /api/v1/orders - список заказов
-- [ ] GET /api/v1/orders/{id} - получить заказ
-- [ ] PATCH /api/v1/orders/{id} - обновить заказ
-- [ ] PATCH /api/v1/orders/{id}/status - изменить статус
-- [ ] DELETE /api/v1/orders/{id} - отменить заказ
+- ✅ POST /api/v1/orders - создать заказ
+- ✅ GET /api/v1/orders - список заказов
+- ✅ GET /api/v1/orders/{id} - получить заказ
+- ✅ PATCH /api/v1/orders/{id} - обновить заказ
+- ✅ DELETE /api/v1/orders/{id} - отменить заказ
 
 #### Order items
-- [ ] POST /api/v1/orders/{id}/items - добавить позицию
-- [ ] PATCH /api/v1/orders/{id}/items/{item_id} - обновить позицию
-- [ ] DELETE /api/v1/orders/{id}/items/{item_id} - удалить позицию
+- ✅ POST /api/v1/orders/{id}/items - добавить позицию
+- ✅ GET /api/v1/orders/{id}/items - список позиций
+- ✅ PATCH /api/v1/orders/{id}/items/{item_id} - обновить позицию
+- ✅ DELETE /api/v1/orders/{id}/items/{item_id} - удалить позицию
 
 #### Order workflow
-- [ ] POST /api/v1/orders/{id}/approve - согласовать заказ
-- [ ] POST /api/v1/orders/{id}/assign-manager - назначить менеджера
-- [ ] POST /api/v1/orders/{id}/assign-constructor - назначить конструктора
+- ✅ Status transitions через PATCH /api/v1/orders/{id}
+- ✅ Assign manager/constructor через PATCH
+- ✅ Auto-calculate order total
+- ✅ Order number generation
 
 ### Приоритет 5: Сервисы (Важно)
 
