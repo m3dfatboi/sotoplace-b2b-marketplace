@@ -10,7 +10,7 @@
 
 ### Следующие задачи
 - ✅ Email уведомления (Celery tasks) - COMPLETE!
-- [ ] Аналитика и дашборды (API endpoints)
+- ✅ Аналитика и дашборды (API endpoints) - COMPLETE!
 - [ ] Contractor marketplace (биржа контрагентов)
 - [ ] Frontend разработка (React/Next.js)
 
