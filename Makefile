@@ -54,6 +54,9 @@ migrate-create: ## Create new migration (use: make migrate-create MSG="descripti
 migrate-down: ## Rollback last migration
 	cd backend && alembic downgrade -1
 
+seed: ## Seed database with test data
+	cd backend && python -m scripts.seed_data
+
 db-shell: ## Connect to PostgreSQL shell
 	docker-compose exec postgres psql -U postgres -d sotoplace
 
