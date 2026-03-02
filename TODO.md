@@ -9,8 +9,8 @@
 - ✅ Чертежи и файлы (загрузка, версионирование) (7 endpoints)
 
 ### Следующие задачи
-- [ ] Email уведомления (Celery tasks)
-- [ ] Аналитика и дашборды
+- ✅ Email уведомления (Celery tasks) - COMPLETE!
+- [ ] Аналитика и дашборды (API endpoints)
 - [ ] Contractor marketplace (биржа контрагентов)
 - [ ] Frontend разработка (React/Next.js)
 
@@ -189,12 +189,17 @@
 ### Приоритет 8: Инфраструктура (Желательно)
 
 #### Celery задачи
-- [ ] tasks/email.py - отправка email
-- [ ] tasks/notifications.py - отправка уведомлений
-- [ ] tasks/analytics.py - расчет аналитики
-- [ ] tasks/cleanup.py - очистка старых данных
+- ✅ tasks/email.py - отправка email (3 tasks)
+- ✅ tasks/notifications.py - отправка уведомлений (3 tasks)
+- ✅ tasks/analytics.py - расчет аналитики (3 tasks)
+- ✅ Celery configuration с Redis
+- ✅ Automatic retry с exponential backoff
+- ✅ HTML email templates
+- ✅ Celery Flower monitoring
+- [ ] tasks/cleanup.py - очистка старых данных (опционально)
 
 #### Мониторинг
+- ✅ Celery Flower (http://localhost:5555)
 - [ ] Prometheus metrics
 - [ ] Health check endpoints
 - [ ] Sentry integration
