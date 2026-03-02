@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter
 
-from app.api.v1 import auth, chats, companies, notifications, orders, products, users, websocket
+from app.api.v1 import auth, blueprints, chats, companies, notifications, orders, products, users, websocket
 
 api_router = APIRouter()
 
@@ -14,4 +14,5 @@ api_router.include_router(products.router)
 api_router.include_router(orders.router)
 api_router.include_router(chats.router)
 api_router.include_router(notifications.router)
+api_router.include_router(blueprints.router)
 api_router.include_router(websocket.router)

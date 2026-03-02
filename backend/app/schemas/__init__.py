@@ -53,6 +53,16 @@ from app.schemas.notification import (
     NotificationPreferencesResponse,
     NotificationStats,
 )
+from app.schemas.blueprint import (
+    BlueprintCreate,
+    BlueprintResponse,
+    BlueprintVersionCreate,
+    BlueprintVersionResponse,
+    BlueprintApprovalCreate,
+    BlueprintApprovalResponse,
+    BlueprintWithVersions,
+    FileUploadResponse,
+)
 
 __all__ = [
     # User schemas
@@ -102,4 +112,13 @@ __all__ = [
     "NotificationPreferencesUpdate",
     "NotificationPreferencesResponse",
     "NotificationStats",
+    # Blueprint schemas
+    "BlueprintCreate",
+    "BlueprintResponse",
+    "BlueprintVersionCreate",
+    "BlueprintVersionResponse",
+    "BlueprintApprovalCreate",
+    "BlueprintApprovalResponse",
+    "BlueprintWithVersions",
+    "FileUploadResponse",
 ]

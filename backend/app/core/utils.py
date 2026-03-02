@@ -106,3 +106,45 @@ def calculate_order_total(items: list) -> float:
         Total amount
     """
     return sum(float(item.total_price) for item in items)
+
+
+async def save_upload_file(file, user_id: UUID) -> tuple[str, int]:
+    """
+    Save uploaded file to storage
+
+    Args:
+        file: UploadFile object
+        user_id: User ID who uploaded the file
+
+    Returns:
+        Tuple of (file_url, file_size)
+    """
+    import os
+    import uuid
+    from pathlib import Path
+    from app.core.config import settings
+
+    # Generate unique filename
+    file_ext = os.path.splitext(file.filename)[1]
+    unique_filename = f"{uuid.uuid4()}{file_ext}"
+
+    # Create upload directory structure: uploads/user_id/YYYY-MM/
+    from datetime import datetime
+    now = datetime.utcnow()
+    upload_dir = Path(settings.storage_path) / str(user_id) / now.strftime("%Y-%m")
+    upload_dir.mkdir(parents=True, exist_ok=True)
+
+    # Save file
+    file_path = upload_dir / unique_filename
+
+    # Read and write file
+    content = await file.read()
+    file_size = len(content)
+
+    with open(file_path, "wb") as f:
+        f.write(content)
+
+    # Generate URL (relative path for local storage)
+    file_url = f"/uploads/{user_id}/{now.strftime('%Y-%m')}/{unique_filename}"
+
+    return file_url, file_size
