@@ -39,6 +39,20 @@ from app.schemas.order import (
     OrderItemUpdate,
     OrderItemResponse,
 )
+from app.schemas.chat import (
+    ChatCreate,
+    ChatResponse,
+    MessageCreate,
+    MessageResponse,
+)
+from app.schemas.notification import (
+    NotificationCreate,
+    NotificationResponse,
+    NotificationMarkRead,
+    NotificationPreferencesUpdate,
+    NotificationPreferencesResponse,
+    NotificationStats,
+)
 
 __all__ = [
     # User schemas
@@ -76,4 +90,16 @@ __all__ = [
     "OrderItemCreate",
     "OrderItemUpdate",
     "OrderItemResponse",
+    # Chat schemas
+    "ChatCreate",
+    "ChatResponse",
+    "MessageCreate",
+    "MessageResponse",
+    # Notification schemas
+    "NotificationCreate",
+    "NotificationResponse",
+    "NotificationMarkRead",
+    "NotificationPreferencesUpdate",
+    "NotificationPreferencesResponse",
+    "NotificationStats",
 ]
