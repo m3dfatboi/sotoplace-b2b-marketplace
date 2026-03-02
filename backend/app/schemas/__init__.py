@@ -63,6 +63,13 @@ from app.schemas.blueprint import (
     BlueprintWithVersions,
     FileUploadResponse,
 )
+from app.schemas.analytics import (
+    CompanyAnalyticsResponse,
+    OrderAnalyticsResponse,
+    UserPerformanceResponse,
+    AnalyticsSummary,
+    TriggerAnalyticsCalculation,
+)
 
 __all__ = [
     # User schemas
@@ -121,4 +128,10 @@ __all__ = [
     "BlueprintApprovalResponse",
     "BlueprintWithVersions",
     "FileUploadResponse",
+    # Analytics schemas
+    "CompanyAnalyticsResponse",
+    "OrderAnalyticsResponse",
+    "UserPerformanceResponse",
+    "AnalyticsSummary",
+    "TriggerAnalyticsCalculation",
 ]
