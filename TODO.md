@@ -102,28 +102,28 @@
 ### Приоритет 5: Сервисы (Важно)
 
 #### User service
-- [ ] UserService.create() - создание пользователя
-- [ ] UserService.authenticate() - аутентификация
-- [ ] UserService.get_by_email() - поиск по email
-- [ ] UserService.update() - обновление профиля
-- [ ] UserService.change_password() - смена пароля
+- ✅ UserService.create() - создание пользователя
+- ✅ UserService.authenticate() - аутентификация
+- ✅ UserService.get_by_email() - поиск по email
+- ✅ UserService.update() - обновление профиля
+- ✅ UserService.change_password() - смена пароля
 
 #### Company service
-- [ ] CompanyService.create() - создание компании
-- [ ] CompanyService.add_member() - добавление участника
-- [ ] CompanyService.update_member_role() - изменение роли
-- [ ] CompanyService.check_permission() - проверка прав
+- ✅ CompanyService.create() - создание компании
+- ✅ CompanyService.add_member() - добавление участника
+- ✅ CompanyService.update_member_role() - изменение роли
+- ✅ CompanyService.check_permission() - проверка прав
 
 #### Order service
-- [ ] OrderService.create() - создание заказа
-- [ ] OrderService.update_status() - изменение статуса
-- [ ] OrderService.calculate_total() - расчет суммы
-- [ ] OrderService.validate_transition() - валидация перехода статуса
+- ✅ OrderService.create() - создание заказа
+- ✅ OrderService.update_status() - изменение статуса
+- ✅ OrderService.calculate_total() - расчет суммы
+- ✅ OrderService.validate_transition() - валидация перехода статуса
 
 #### Product service
-- [ ] ProductService.create() - создание товара
-- [ ] ProductService.search() - поиск товаров
-- [ ] ProductService.publish() - публикация товара
+- ✅ ProductService.create() - создание товара
+- ✅ ProductService.search() - поиск товаров
+- ✅ ProductService.publish() - публикация товара
 
 ### Приоритет 6: Тестирование (Важно)
 
