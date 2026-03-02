@@ -2,16 +2,17 @@
 
 ## 🎯 Текущий спринт
 
-### В работе
-- [ ] Добавление чатов и сообщений
-- [ ] WebSocket для real-time коммуникации
-- [ ] Система уведомлений
+### ✅ Завершено в этой сессии
+- ✅ Добавление чатов и сообщений (8 endpoints)
+- ✅ WebSocket для real-time коммуникации
+- ✅ Система уведомлений (10 endpoints)
+- ✅ Чертежи и файлы (загрузка, версионирование) (7 endpoints)
 
 ### Следующие задачи
-- [ ] Чертежи и файлы (загрузка, версионирование)
-- [ ] Email уведомления
+- [ ] Email уведомления (Celery tasks)
 - [ ] Аналитика и дашборды
-- [ ] Frontend разработка
+- [ ] Contractor marketplace (биржа контрагентов)
+- [ ] Frontend разработка (React/Next.js)
 
 ---
 
@@ -147,29 +148,43 @@
 ### Приоритет 7: Дополнительные модули (Желательно)
 
 #### Чаты и сообщения
-- [ ] POST /api/v1/chats - создать чат
-- [ ] GET /api/v1/chats - список чатов
-- [ ] POST /api/v1/chats/{id}/messages - отправить сообщение
-- [ ] GET /api/v1/chats/{id}/messages - получить сообщения
-- [ ] WebSocket /ws/chats/{id} - real-time чат
+- ✅ POST /api/v1/chats - создать чат
+- ✅ GET /api/v1/chats - список чатов
+- ✅ POST /api/v1/chats/{id}/messages - отправить сообщение
+- ✅ GET /api/v1/chats/{id}/messages - получить сообщения
+- ✅ PATCH /api/v1/chats/{id}/participants/{user_id}/read - отметить прочитанным
+- ✅ POST /api/v1/chats/{id}/participants - добавить участника
+- ✅ GET /api/v1/chats/{id}/participants - список участников
+- ✅ DELETE /api/v1/chats/{id}/participants/{user_id} - удалить участника
+- ✅ WebSocket /ws/chats/{id} - real-time чат
 
 #### Чертежи
-- [ ] POST /api/v1/blueprints - загрузить чертеж
-- [ ] GET /api/v1/blueprints/{id} - получить чертеж
-- [ ] POST /api/v1/blueprints/{id}/versions - новая версия
-- [ ] POST /api/v1/blueprints/{id}/approve - согласовать
+- ✅ POST /api/v1/blueprints - создать чертеж
+- ✅ GET /api/v1/blueprints - список чертежей
+- ✅ GET /api/v1/blueprints/{id} - получить чертеж с версиями
+- ✅ POST /api/v1/blueprints/{id}/versions - загрузить новую версию
+- ✅ GET /api/v1/blueprints/{id}/versions - получить все версии
+- ✅ POST /api/v1/blueprints/{id}/versions/{version_id}/approve - согласовать
+- ✅ POST /api/v1/blueprints/upload - загрузить файл
 
 #### Уведомления
-- [ ] GET /api/v1/notifications - список уведомлений
-- [ ] PATCH /api/v1/notifications/{id}/read - отметить прочитанным
-- [ ] GET /api/v1/notifications/preferences - настройки
-- [ ] PATCH /api/v1/notifications/preferences - обновить настройки
+- ✅ GET /api/v1/notifications - список уведомлений
+- ✅ GET /api/v1/notifications/stats - статистика уведомлений
+- ✅ GET /api/v1/notifications/{id} - получить уведомление
+- ✅ PATCH /api/v1/notifications/{id}/read - отметить прочитанным
+- ✅ POST /api/v1/notifications/mark-all-read - отметить все прочитанными
+- ✅ PATCH /api/v1/notifications/{id}/archive - архивировать
+- ✅ DELETE /api/v1/notifications/{id} - удалить уведомление
+- ✅ GET /api/v1/notifications/preferences/me - получить настройки
+- ✅ PATCH /api/v1/notifications/preferences/me - обновить настройки
 
 #### Загрузка файлов
-- [ ] POST /api/v1/upload - загрузить файл
-- [ ] GET /api/v1/files/{id} - получить файл
-- [ ] DELETE /api/v1/files/{id} - удалить файл
-- [ ] Интеграция с MinIO/S3
+- ✅ POST /api/v1/blueprints/upload - загрузить файл
+- ✅ Поддержка форматов: PDF, DWG, STEP, IGES, STL, PNG, JPG
+- ✅ Автоматическая структура директорий (uploads/user_id/YYYY-MM/)
+- ✅ Генерация уникальных имен файлов
+- ✅ Отслеживание размера файлов
+- [ ] Интеграция с MinIO/S3 (опционально)
 
 ### Приоритет 8: Инфраструктура (Желательно)
 
@@ -228,7 +243,55 @@
 
 ## 📝 Заметки
 
-### Текущая сессия (2026-03-02) - ЗАВЕРШЕНА ✅
+### Текущая сессия (2026-03-02) - ПРОДОЛЖЕНИЕ ✅
+**Добавлено в этой сессии:**
+- ✅ **WebSocket для real-time чатов:**
+  - Подключение/отключение пользователей
+  - Broadcast сообщений всем участникам
+  - Typing indicators (индикаторы набора текста)
+  - Read receipts (отметки о прочтении)
+  - User join/leave notifications
+  - Connection manager для управления соединениями
+
+- ✅ **Система уведомлений (10 endpoints):**
+  - Список уведомлений с фильтрами
+  - Статистика уведомлений
+  - Отметка прочитанным/непрочитанным
+  - Массовая отметка всех как прочитанных
+  - Архивирование уведомлений
+  - Удаление уведомлений
+  - Настройки уведомлений по каналам (email, push, sms)
+  - Персональные настройки для каждой компании
+
+- ✅ **Система чертежей (7 endpoints):**
+  - Создание чертежей для заказов
+  - Версионирование чертежей
+  - Загрузка новых версий
+  - Workflow согласования (approve/reject)
+  - Комментарии к согласованиям
+  - История версий
+  - Поддержка форматов: PDF, DWG, STEP, IGES, STL
+
+- ✅ **Загрузка файлов:**
+  - Endpoint для загрузки файлов
+  - Автоматическая структура директорий
+  - Генерация уникальных имен
+  - Отслеживание размера файлов
+  - Поддержка изображений (PNG, JPG)
+
+**Итого за сессию: +25 новых endpoints, 3 новых модуля**
+
+**Общая статистика проекта:**
+- 25 коммитов
+- 8 API модулей
+- 60+ endpoints
+- 4 бизнес-сервиса
+- 18 SQLAlchemy моделей
+- 35+ Pydantic схем
+- 30+ тестов
+- ~12,000+ строк кода
+
+### Предыдущая сессия (2026-03-02) - ЗАВЕРШЕНА ✅
 - ✅ Создан полный фундамент проекта
 - ✅ Все базовые модели и схемы готовы
 - ✅ Первая миграция создана
@@ -251,14 +314,13 @@
   - Docker environment
   - Makefile commands
 
-**Итого: 21 коммит, ~10,000+ строк кода, Production-ready!**
-
 ### Следующая сессия
 - **ВАЖНО:** Прочитать TODO.md в начале сессии!
-- Добавить чаты и сообщения (WebSocket)
-- Реализовать систему уведомлений
-- Начать работу над чертежами
-- Рассмотреть frontend разработку
+- Добавить Celery tasks для email уведомлений
+- Реализовать аналитику и дашборды
+- Добавить contractor marketplace (биржа контрагентов)
+- Рассмотреть frontend разработку (React/Next.js)
+- Добавить больше тестов для новых модулей
 
 ---
 
