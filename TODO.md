@@ -135,6 +135,8 @@
 - ✅ tests/test_companies.py - тесты компаний (6 тестов)
 - ✅ tests/test_products.py - тесты товаров (7 тестов)
 - ✅ tests/test_orders.py - тесты заказов (9 тестов)
+- ✅ tests/test_notifications.py - тесты уведомлений (11 тестов) - NEW!
+- ✅ tests/test_blueprints.py - тесты чертежей (9 тестов) - NEW!
 
 #### Integration tests
 - ✅ tests/test_integration.py - полные e2e workflows (2 теста)
@@ -144,6 +146,8 @@
 #### Test fixtures
 - ✅ tests/conftest.py - общие fixtures (db_session, client, auth_headers)
 - [ ] tests/factories.py - фабрики для тестовых данных (опционально)
+
+**Total: 56+ tests with comprehensive coverage**
 
 ### Приоритет 7: Дополнительные модули (Желательно)
 
