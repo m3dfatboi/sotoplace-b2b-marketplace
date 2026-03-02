@@ -3,14 +3,13 @@
 ## 🎯 Текущий спринт
 
 ### В работе
-- [ ] Создать API endpoints для аутентификации
-- [ ] Реализовать JWT middleware
-- [ ] Добавить dependency для current_user
-
-### Следующие задачи
-- [ ] CRUD endpoints для Companies
 - [ ] CRUD endpoints для Products
 - [ ] CRUD endpoints для Orders
+
+### Следующие задачи
+- [ ] Тестирование API endpoints
+- [ ] Добавить фильтры и пагинацию
+- [ ] Создать сервисы для бизнес-логики
 
 ---
 
@@ -19,37 +18,37 @@
 ### Приоритет 1: Аутентификация и базовые API (Критично)
 
 #### Auth endpoints
-- [ ] POST /api/v1/auth/register - регистрация пользователя
-- [ ] POST /api/v1/auth/login - вход (получение токенов)
+- ✅ POST /api/v1/auth/register - регистрация пользователя
+- ✅ POST /api/v1/auth/login - вход (получение токенов)
+- ✅ POST /api/v1/auth/login/form - OAuth2 login для Swagger
 - [ ] POST /api/v1/auth/refresh - обновление access token
 - [ ] POST /api/v1/auth/logout - выход
-- [ ] GET /api/v1/auth/me - получить текущего пользователя
 
 #### User management
-- [ ] GET /api/v1/users/me - профиль текущего пользователя
-- [ ] PATCH /api/v1/users/me - обновить профиль
-- [ ] POST /api/v1/users/change-password - смена пароля
+- ✅ GET /api/v1/users/me - профиль текущего пользователя
+- ✅ PATCH /api/v1/users/me - обновить профиль
+- ✅ POST /api/v1/users/me/change-password - смена пароля
 
 #### Middleware и dependencies
-- [ ] JWT authentication middleware
-- [ ] get_current_user dependency
-- [ ] get_current_active_user dependency
+- ✅ JWT authentication middleware
+- ✅ get_current_user dependency
+- ✅ get_current_active_user dependency
 - [ ] require_role decorator
 - [ ] require_permission decorator
 
 ### Приоритет 2: Управление компаниями (Важно)
 
 #### Company endpoints
-- [ ] POST /api/v1/companies - создать компанию
+- ✅ POST /api/v1/companies - создать компанию
 - [ ] GET /api/v1/companies - список компаний (для админов)
-- [ ] GET /api/v1/companies/my - мои компании
-- [ ] GET /api/v1/companies/{id} - получить компанию
-- [ ] PATCH /api/v1/companies/{id} - обновить компанию
+- ✅ GET /api/v1/companies/my - мои компании
+- ✅ GET /api/v1/companies/{id} - получить компанию
+- ✅ PATCH /api/v1/companies/{id} - обновить компанию
 - [ ] DELETE /api/v1/companies/{id} - удалить компанию
 
 #### Company members
-- [ ] POST /api/v1/companies/{id}/members - добавить участника
-- [ ] GET /api/v1/companies/{id}/members - список участников
+- ✅ POST /api/v1/companies/{id}/members - добавить участника
+- ✅ GET /api/v1/companies/{id}/members - список участников
 - [ ] PATCH /api/v1/companies/{id}/members/{user_id} - обновить роль
 - [ ] DELETE /api/v1/companies/{id}/members/{user_id} - удалить участника
 
