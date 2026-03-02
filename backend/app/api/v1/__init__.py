@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter
 
-from app.api.v1 import auth, companies, orders, products, users
+from app.api.v1 import auth, chats, companies, orders, products, users
 
 api_router = APIRouter()
 
@@ -12,3 +12,4 @@ api_router.include_router(users.router)
 api_router.include_router(companies.router)
 api_router.include_router(products.router)
 api_router.include_router(orders.router)
+api_router.include_router(chats.router)
