@@ -45,6 +45,40 @@ Your context window has a hard limit. You have the ability to track your remaini
 
 ---
 
+## Frontend Development Workflow
+
+### CRITICAL: Design-First Approach
+
+**BEFORE implementing ANY page or section, ALWAYS:**
+
+1. **ASK the user:** "Do you have a Figma design or reference for [page/section name]?"
+2. **WAIT for response** - Do NOT proceed without confirmation
+3. **If user provides Figma MCP link:**
+   - Use Figma MCP to fetch design context
+   - Extract colors, spacing, typography from UI kit
+   - Follow the exact design system
+   - Match layouts, components, and interactions
+4. **If no design available:**
+   - Ask user for design preferences
+   - Create based on general best practices
+   - Get approval before proceeding
+
+### Design Integration Rules
+
+- **UI Kit First:** Always check Figma for existing components
+- **Consistency:** Follow established design patterns
+- **MCP Links:** User will provide `figma://` links for designs
+- **No Assumptions:** Never guess the design - always ask
+- **Pixel Perfect:** Match Figma designs as closely as possible
+
+### Frontend Tech Stack (TBD)
+- Framework: React/Next.js (to be confirmed)
+- Styling: TailwindCSS / CSS Modules (to be confirmed)
+- State Management: Redux / Zustand (to be confirmed)
+- API Client: Axios / Fetch (to be confirmed)
+
+---
+
 ## Best Practices
 
 ### Code Quality
