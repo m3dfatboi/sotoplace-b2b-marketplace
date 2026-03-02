@@ -45,3 +45,26 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Prevent content overflow in widgets */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure text doesn't overflow containers */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Widget content should not overflow */
+[class*="Card"] {
+  overflow: hidden;
+}
+
+/* Ensure flex children don't overflow */
+.flex > * {
+  min-width: 0;
+  min-height: 0;
+}

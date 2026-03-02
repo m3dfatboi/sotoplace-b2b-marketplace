@@ -5,45 +5,47 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 interface LoadItem {
   name: string;
   percentage: number;
+  color: string;
 }
 
 const mockData: LoadItem[] = [
-  { name: "Склад 1", percentage: 65 },
-  { name: "Склад 2", percentage: 45 },
-  { name: "Отгрузка", percentage: 80 },
+  { name: "Склад 1", percentage: 90, color: "#b32c2b" }, // error-600
+  { name: "Склад 2", percentage: 65, color: "#a68a26" }, // process-600
+  { name: "Отгрузка", percentage: 26, color: "#52962a" }, // success-600
 ];
 
 export function LoadWidget() {
   return (
     <Card className="h-[236px]">
-      <CardHeader className="pb-3">
-        <div className="flex items-baseline gap-2">
+      <CardHeader>
+        <div className="flex items-end gap-[6px]">
           <CardTitle>Нагрузка</CardTitle>
           <CardDescription>сейчас</CardDescription>
         </div>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {mockData.map((item, index) => (
-            <div key={index}>
-              <div className="text-[10px] text-[#737373] mb-2">{item.name}</div>
-              <div className="flex gap-[2px]">
-                {Array.from({ length: 31 }).map((_, i) => {
-                  const threshold = (item.percentage / 100) * 31;
-                  const isActive = i < threshold;
-                  return (
-                    <div
-                      key={i}
-                      className={`w-[4.9px] h-4 rounded-sm ${
-                        isActive ? "bg-[#d18043]" : "bg-[#f5f5f5]"
-                      }`}
-                    />
-                  );
-                })}
-              </div>
+      <CardContent className="flex flex-col gap-[10px]">
+        {mockData.map((item, index) => (
+          <div key={index} className="flex flex-col gap-[10px]">
+            <div className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">
+              {item.name}
             </div>
-          ))}
-        </div>
+            <div className="flex gap-[2px] h-[24px] items-center border border-[#d4d4d4] rounded-[6px] p-[4px]">
+              {Array.from({ length: 31 }).map((_, i) => {
+                const threshold = Math.round((item.percentage / 100) * 31);
+                const isActive = i < threshold;
+                return (
+                  <div
+                    key={i}
+                    className="flex-1 h-full rounded-[2px]"
+                    style={{
+                      backgroundColor: isActive ? item.color : "#d4d4d4",
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </CardContent>
     </Card>
   );
