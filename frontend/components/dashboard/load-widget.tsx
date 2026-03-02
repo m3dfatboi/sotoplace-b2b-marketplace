@@ -9,21 +9,21 @@ interface LoadItem {
 }
 
 const mockData: LoadItem[] = [
-  { name: "Склад 1", percentage: 90, color: "#b32c2b" }, // error-600
-  { name: "Склад 2", percentage: 65, color: "#a68a26" }, // process-600
-  { name: "Отгрузка", percentage: 26, color: "#52962a" }, // success-600
+  { name: "Склад 1", percentage: 90, color: "#b32c2b" },
+  { name: "Склад 2", percentage: 65, color: "#a68a26" },
+  { name: "Отгрузка", percentage: 26, color: "#52962a" },
 ];
 
 export function LoadWidget() {
   return (
-    <Card className="h-[236px]">
+    <Card className="h-[236px] w-[260px] overflow-hidden">
       <CardHeader>
         <div className="flex items-end gap-[6px]">
           <CardTitle>Нагрузка</CardTitle>
           <CardDescription>сейчас</CardDescription>
         </div>
       </CardHeader>
-      <CardContent className="flex flex-col gap-[10px]">
+      <CardContent className="flex flex-col gap-[10px] pt-[16px]">
         {mockData.map((item, index) => (
           <div key={index} className="flex flex-col gap-[10px]">
             <div className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">

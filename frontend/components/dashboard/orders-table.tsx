@@ -1,38 +1,24 @@
 "use client";
 
 import { formatCurrency, formatDate } from "@/lib/utils";
-import { mockUsers } from "@/lib/mock-data";
 import { Order } from "@/types";
 import { ChevronDown, ChevronRight, MoreVertical } from "lucide-react";
 import { useState } from "react";
-import Image from "next/image";
 
 interface OrdersTableProps {
   orders: Order[];
 }
 
-const statusColors: Record<string, string> = {
-  draft: "bg-[#f5f5f5] text-[#737373]",
-  new: "bg-[#f0f8eb] text-[#52962a]",
-  in_progress: "bg-[#f6efd5] text-[#a68a26]",
-  production: "bg-[#f6efd5] text-[#a68a26]",
-  ready: "bg-[#f0f8eb] text-[#52962a]",
-  shipped: "bg-[#f0f8eb] text-[#52962a]",
-  delivered: "bg-[#f0f8eb] text-[#52962a]",
-  completed: "bg-[#f0f8eb] text-[#52962a]",
-  cancelled: "bg-[#ffeeee] text-[#b32c2b]",
-};
-
-const statusLabels: Record<string, string> = {
-  draft: "Черновик",
-  new: "Новый",
-  in_progress: "В работе",
-  production: "Производство",
-  ready: "Готов",
-  shipped: "Отгружен",
-  delivered: "Доставлен",
-  completed: "Завершен",
-  cancelled: "Отменен",
+const statusConfig: Record<string, { bg: string; text: string; label: string }> = {
+  draft: { bg: "#f5f5f5", text: "#737373", label: "Черновик" },
+  new: { bg: "#f0f8eb", text: "#52962a", label: "Новый" },
+  in_progress: { bg: "#f6efd5", text: "#a68a26", label: "В работе" },
+  production: { bg: "#f6efd5", text: "#a68a26", label: "Производство" },
+  ready: { bg: "#f0f8eb", text: "#52962a", label: "Готов" },
+  shipped: { bg: "#f0f8eb", text: "#52962a", label: "Отгружен" },
+  delivered: { bg: "#f0f8eb", text: "#52962a", label: "Доставлен" },
+  completed: { bg: "#f0f8eb", text: "#52962a", label: "Завершен" },
+  cancelled: { bg: "#ffeeee", text: "#b32c2b", label: "Отменен" },
 };
 
 export function OrdersTable({ orders }: OrdersTableProps) {
@@ -49,28 +35,30 @@ export function OrdersTable({ orders }: OrdersTableProps) {
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-[#e5e5e5]">
+    <div className="bg-white rounded-[20px] border border-[#e5e5e5] overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-[#e5e5e5]">
-        <h2 className="text-base font-semibold text-[#1f1f1f]">
+      <div className="flex items-center justify-between px-[20px] py-[20px] border-b border-[#e5e5e5]">
+        <h2 className="text-[16px] font-semibold leading-[20px] text-[#1f1f1f]">
           Счета <span className="text-[#737373] font-normal">134</span>
         </h2>
-        <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 px-3 h-[30px] rounded-lg border border-[#d4d4d4] bg-white hover:bg-[#f5f5f5] text-sm">
+        <div className="flex items-center gap-[8px]">
+          <button className="flex items-center gap-[8px] px-[14px] h-[30px] rounded-[8px] border border-[#d4d4d4] bg-white hover:bg-[#f5f5f5] text-[14px] font-medium leading-[18px] text-[#1f1f1f] transition-colors">
             Фильтры
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2 3H10M3 6H9M4 9H8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 3.5H12M3 7H11M4.5 10.5H9.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
           </button>
-          <button className="flex items-center gap-2 px-3 h-[30px] rounded-lg bg-[#d18043] text-white hover:bg-[#a76636] text-sm">
+          <button className="flex items-center gap-[8px] px-[14px] h-[30px] rounded-[8px] bg-[#1f1f1f] text-white hover:bg-[#525252] text-[14px] font-medium leading-[18px] transition-colors">
             Новый
-            <span className="text-lg leading-none">+</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 2.625V11.375M11.375 7H2.625" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
         </div>
       </div>
 
       {/* Table Header */}
-      <div className="grid grid-cols-[40px_80px_200px_200px_150px_120px_120px_100px_40px] gap-4 px-5 py-3 border-b border-[#e5e5e5] text-xs text-[#737373]">
+      <div className="grid grid-cols-[40px_100px_1fr_1fr_150px_120px_100px_120px_40px] gap-[16px] px-[20px] py-[12px] border-b border-[#e5e5e5] text-[12px] font-medium leading-[14px] text-[#737373]">
         <div></div>
         <div>Номер</div>
         <div>Поставщик</div>
@@ -83,81 +71,90 @@ export function OrdersTable({ orders }: OrdersTableProps) {
       </div>
 
       {/* Table Body */}
-      <div className="divide-y divide-[#e5e5e5]">
+      <div>
         {orders.map((order) => {
           const isExpanded = expandedRows.has(order.id);
+          const status = statusConfig[order.status] || statusConfig.draft;
+
           return (
             <div key={order.id}>
-              <div className="grid grid-cols-[40px_80px_200px_200px_150px_120px_120px_100px_40px] gap-4 px-5 py-4 hover:bg-[#f5f5f5] transition-colors items-center">
+              <div className="grid grid-cols-[40px_100px_1fr_1fr_150px_120px_100px_120px_40px] gap-[16px] px-[20px] py-[16px] hover:bg-[#f5f5f5] transition-colors items-center border-b border-[#e5e5e5]">
                 {/* Expand button */}
                 <button
                   onClick={() => toggleRow(order.id)}
-                  className="w-6 h-6 flex items-center justify-center hover:bg-[#e5e5e5] rounded"
+                  className="w-[24px] h-[24px] flex items-center justify-center hover:bg-[#e5e5e5] rounded transition-colors"
                 >
                   {isExpanded ? (
-                    <ChevronDown className="w-4 h-4 text-[#737373]" />
+                    <ChevronDown className="w-[16px] h-[16px] text-[#737373]" />
                   ) : (
-                    <ChevronRight className="w-4 h-4 text-[#737373]" />
+                    <ChevronRight className="w-[16px] h-[16px] text-[#737373]" />
                   )}
                 </button>
 
-                {/* Order number */}
-                <div className="flex items-center gap-2">
-                  <div className="w-1 h-6 bg-[#d18043] rounded-full" />
-                  <span className="text-sm font-medium text-[#1f1f1f]">
+                {/* Order number with colored stripe */}
+                <div className="flex items-center gap-[8px]">
+                  <div className="w-[2px] h-[24px] bg-[#d18043] rounded-full" />
+                  <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">
                     {order.order_number}
                   </span>
                 </div>
 
                 {/* Supplier */}
-                <div className="text-sm text-[#1f1f1f]">
+                <div className="text-[14px] leading-[18px] text-[#1f1f1f] truncate">
                   {order.company_name}
                 </div>
 
-                {/* Buyer */}
-                <div>
-                  <div className="text-sm text-[#1f1f1f] font-medium">
+                {/* Buyer with date */}
+                <div className="min-w-0">
+                  <div className="text-[14px] font-medium leading-[18px] text-[#1f1f1f] truncate">
                     {order.buyer_company_name}
                   </div>
-                  <div className="text-xs text-[#737373]">
+                  <div className="text-[12px] leading-[14px] text-[#737373] mt-[2px]">
                     {formatDate(order.created_at)}
                   </div>
                 </div>
 
-                {/* Status */}
+                {/* Status badge */}
                 <div>
-                  <span className={`px-2 py-1 rounded text-xs font-medium ${statusColors[order.status]}`}>
-                    {statusLabels[order.status]}
+                  <span
+                    className="inline-flex items-center px-[8px] py-[4px] rounded-[6px] text-[12px] font-medium leading-[14px]"
+                    style={{
+                      backgroundColor: status.bg,
+                      color: status.text,
+                    }}
+                  >
+                    {status.label}
                   </span>
                 </div>
 
                 {/* Deadline */}
-                <div className="text-sm text-[#1f1f1f]">
+                <div className="text-[14px] leading-[18px] text-[#1f1f1f]">
                   {order.deadline ? formatDate(order.deadline) : "-"}
                 </div>
 
                 {/* Items count */}
-                <div className="text-sm text-[#737373]">
+                <div className="text-[14px] leading-[18px] text-[#737373]">
                   {order.items_count} шт
                 </div>
 
                 {/* Amount */}
-                <div className="text-sm font-semibold text-right text-[#1f1f1f]">
+                <div className="text-[14px] font-semibold leading-[18px] text-right text-[#1f1f1f]">
                   {formatCurrency(order.total_amount)}
                 </div>
 
                 {/* Actions */}
-                <button className="w-6 h-6 flex items-center justify-center hover:bg-[#e5e5e5] rounded">
-                  <MoreVertical className="w-4 h-4 text-[#737373]" />
+                <button className="w-[24px] h-[24px] flex items-center justify-center hover:bg-[#e5e5e5] rounded transition-colors">
+                  <MoreVertical className="w-[16px] h-[16px] text-[#737373]" />
                 </button>
               </div>
 
               {/* Expanded content */}
               {isExpanded && (
-                <div className="px-5 py-3 bg-[#f5f5f5] border-t border-[#e5e5e5]">
-                  <div className="text-sm text-[#737373]">
+                <div className="px-[20px] py-[16px] bg-[#f5f5f5] border-b border-[#e5e5e5]">
+                  <div className="text-[14px] leading-[18px] text-[#737373]">
                     Детали заказа #{order.order_number}
                   </div>
+                  {/* Здесь можно добавить детальную информацию */}
                 </div>
               )}
             </div>

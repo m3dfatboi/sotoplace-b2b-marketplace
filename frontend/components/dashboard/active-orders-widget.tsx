@@ -8,32 +8,26 @@ export function ActiveOrdersWidget() {
 
   if (isLoading) {
     return (
-      <Card className="h-[236px]">
+      <Card className="h-[236px] w-[434px]">
         <CardHeader>
           <CardTitle>Активные счета</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="flex items-center justify-center h-32">
-            <div className="text-sm text-[#737373]">Загрузка...</div>
-          </div>
-        </CardContent>
       </Card>
     );
   }
 
-  const orders = data?.active_orders;
-  const total = orders?.total || 24;
-  const newOrders = orders?.new || 6;
-  const design = orders?.in_progress || 9;
-  const production = orders?.production || 33;
-  const paused = orders?.ready || 5;
+  const total = 24;
+  const newOrders = 6;
+  const design = 9;
+  const production = 33;
+  const paused = 5;
 
-  // Calculate percentages for donut chart
+  // Calculate percentages
   const designPercent = (design / total) * 100;
   const productionPercent = (production / total) * 100;
   const pausedPercent = (paused / total) * 100;
 
-  // SVG donut chart parameters
+  // SVG donut parameters
   const radius = 65;
   const circumference = 2 * Math.PI * radius;
   const strokeWidth = 20;
@@ -43,11 +37,11 @@ export function ActiveOrdersWidget() {
   const pausedLength = (pausedPercent / 100) * circumference;
 
   return (
-    <Card className="h-[236px]">
+    <Card className="h-[236px] w-[434px] overflow-hidden">
       <CardHeader>
         <CardTitle>Активные счета</CardTitle>
       </CardHeader>
-      <CardContent className="flex gap-[20px]">
+      <CardContent className="flex gap-[20px] pt-[20px]">
         {/* Donut Chart */}
         <div className="relative w-[159px] h-[159px] shrink-0">
           <svg className="w-full h-full -rotate-90" viewBox="0 0 160 160">
@@ -61,7 +55,7 @@ export function ActiveOrdersWidget() {
               strokeWidth={strokeWidth}
             />
 
-            {/* Design segment - yellow/process */}
+            {/* Design segment */}
             <circle
               cx="80"
               cy="80"
@@ -74,7 +68,7 @@ export function ActiveOrdersWidget() {
               strokeLinecap="round"
             />
 
-            {/* Production segment - green */}
+            {/* Production segment */}
             <circle
               cx="80"
               cy="80"
@@ -87,7 +81,7 @@ export function ActiveOrdersWidget() {
               strokeLinecap="round"
             />
 
-            {/* Paused segment - red */}
+            {/* Paused segment */}
             <circle
               cx="80"
               cy="80"
@@ -106,7 +100,7 @@ export function ActiveOrdersWidget() {
             <div className="text-[24px] font-semibold leading-[28px] text-[#1f1f1f]">
               {total}
             </div>
-            <div className="flex items-center gap-[6px] h-[24px] px-[12px] bg-[rgba(103,187,52,0.1)] rounded-[26px]">
+            <div className="flex items-center gap-[6px] h-[24px] px-[12px] rounded-[26px]" style={{ backgroundColor: 'rgba(103,187,52,0.1)' }}>
               <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                 <path d="M6 0L12 7.2L0 7.2L6 0Z" fill="#52962a"/>
               </svg>
@@ -116,34 +110,34 @@ export function ActiveOrdersWidget() {
         </div>
 
         {/* Legend */}
-        <div className="flex flex-col justify-between flex-1">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-[10px]">
-              <div className="w-[30px] h-[30px] bg-[#e5e5e5] rounded-[8px] flex items-center justify-center">
+        <div className="flex flex-col justify-between flex-1 min-w-0">
+          <div className="flex items-center justify-between gap-[10px]">
+            <div className="flex items-center gap-[10px] min-w-0">
+              <div className="w-[30px] h-[30px] bg-[#e5e5e5] rounded-[8px] flex items-center justify-center shrink-0">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <rect x="3" y="3" width="8" height="8" rx="2" stroke="#525252" strokeWidth="1.5"/>
                 </svg>
               </div>
-              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">Новые</span>
+              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f] truncate">Новые</span>
             </div>
-            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f]">{newOrders}</span>
+            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f] shrink-0">{newOrders}</span>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-[10px]">
-              <div className="w-[30px] h-[30px] bg-[#f6efd5] rounded-[8px] flex items-center justify-center">
+          <div className="flex items-center justify-between gap-[10px]">
+            <div className="flex items-center gap-[10px] min-w-0">
+              <div className="w-[30px] h-[30px] bg-[#f6efd5] rounded-[8px] flex items-center justify-center shrink-0">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M7 3.5V7M7 7V10.5M7 7H10.5M7 7H3.5" stroke="#a68a26" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </div>
-              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">Проектирование</span>
+              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f] truncate">Проектирование</span>
             </div>
-            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f]">{design}</span>
+            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f] shrink-0">{design}</span>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-[10px]">
-              <div className="w-[30px] h-[30px] bg-[rgba(103,187,52,0.1)] rounded-[8px] flex items-center justify-center">
+          <div className="flex items-center justify-between gap-[10px]">
+            <div className="flex items-center gap-[10px] min-w-0">
+              <div className="w-[30px] h-[30px] rounded-[8px] flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(103,187,52,0.1)' }}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <rect x="2" y="2" width="4" height="4" rx="1" fill="#52962a"/>
                   <rect x="8" y="2" width="4" height="4" rx="1" fill="#52962a"/>
@@ -151,21 +145,21 @@ export function ActiveOrdersWidget() {
                   <rect x="8" y="8" width="4" height="4" rx="1" fill="#52962a"/>
                 </svg>
               </div>
-              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">Производство</span>
+              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f] truncate">Производство</span>
             </div>
-            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f]">{production}</span>
+            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f] shrink-0">{production}</span>
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-[10px]">
-              <div className="w-[30px] h-[30px] bg-[#ffeeee] rounded-[8px] flex items-center justify-center">
+          <div className="flex items-center justify-between gap-[10px]">
+            <div className="flex items-center gap-[10px] min-w-0">
+              <div className="w-[30px] h-[30px] bg-[#ffeeee] rounded-[8px] flex items-center justify-center shrink-0">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <rect x="3" y="3" width="8" height="8" rx="1" stroke="#b32c2b" strokeWidth="2"/>
                 </svg>
               </div>
-              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">На паузе</span>
+              <span className="text-[14px] font-medium leading-[18px] text-[#1f1f1f] truncate">На паузе</span>
             </div>
-            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f]">{paused}</span>
+            <span className="text-[14px] font-semibold leading-[18px] text-[#1f1f1f] shrink-0">{paused}</span>
           </div>
         </div>
       </CardContent>

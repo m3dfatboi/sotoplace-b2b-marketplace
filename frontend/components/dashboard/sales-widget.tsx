@@ -8,7 +8,7 @@ export function SalesWidget() {
 
   if (isLoading) {
     return (
-      <Card className="h-[236px]">
+      <Card className="h-[236px] w-[260px]">
         <CardHeader>
           <div className="flex items-end gap-[6px]">
             <CardTitle>Продажи</CardTitle>
@@ -19,34 +19,42 @@ export function SalesWidget() {
     );
   }
 
-  const chartData = data?.weekly_sales || [60, 100, 67, 60, 46, 74, 60, 60, 84, 96, 96, 84];
-  const maxValue = Math.max(...chartData);
-  const currentValue = data?.weekly_sales?.[data.weekly_sales.length - 1] || 145;
+  // 17 bars with varying heights
+  const chartData = [60, 100, 67, 60, 46, 74, 60, 60, 84, 96, 96, 84, 0, 0, 0, 0, 0];
+  const maxValue = Math.max(...chartData.filter(v => v > 0));
+  const currentValue = 145;
 
   return (
-    <Card className="h-[236px]">
+    <Card className="h-[236px] w-[260px] overflow-hidden">
       <CardHeader>
         <div className="flex items-end gap-[6px]">
           <CardTitle>Продажи</CardTitle>
           <CardDescription>за неделю</CardDescription>
         </div>
       </CardHeader>
-      <CardContent className="flex flex-col gap-[16px]">
-        {/* Chart */}
-        <div className="flex items-end justify-between h-[123px] gap-[2px]">
-          {chartData.slice(0, 17).map((value, index) => {
-            const heightPercent = (value / maxValue) * 100;
+      <CardContent className="flex flex-col gap-[16px] pt-[16px]">
+        {/* Chart - 17 bars, 6px width each */}
+        <div className="flex items-end justify-between h-[123px]">
+          {chartData.map((value, index) => {
+            const heightPercent = value > 0 ? (value / maxValue) * 100 : 0;
             return (
-              <div key={index} className="flex-1 flex items-end h-full">
-                <div className="w-full relative">
-                  {/* Background bar */}
-                  <div className="w-full h-[123px] bg-[#1f1f1f] opacity-15 rounded-[25px]" />
-                  {/* Active bar */}
+              <div key={index} className="relative" style={{ width: '6px' }}>
+                {/* Background bar */}
+                <div
+                  className="absolute bottom-0 w-full rounded-[25px]"
+                  style={{
+                    height: '123px',
+                    backgroundColor: '#1f1f1f',
+                    opacity: 0.15
+                  }}
+                />
+                {/* Active bar */}
+                {value > 0 && (
                   <div
-                    className="w-full bg-[#d18043] rounded-[25px] absolute bottom-0"
+                    className="absolute bottom-0 w-full bg-[#d18043] rounded-[25px]"
                     style={{ height: `${heightPercent}%` }}
                   />
-                </div>
+                )}
               </div>
             );
           })}

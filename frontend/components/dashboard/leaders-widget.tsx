@@ -19,31 +19,31 @@ const mockLeaders: Leader[] = [
 
 export function LeadersWidget() {
   return (
-    <Card className="h-[236px]">
+    <Card className="h-[236px] w-[260px] overflow-hidden">
       <CardHeader>
         <div className="flex items-end gap-[6px]">
           <CardTitle>Лидеры</CardTitle>
           <CardDescription>за неделю</CardDescription>
         </div>
       </CardHeader>
-      <CardContent className="flex flex-col justify-between h-[163px]">
+      <CardContent className="flex flex-col justify-between pt-[16px]" style={{ height: '163px' }}>
         {mockLeaders.map((leader, index) => (
           <div key={leader.rank}>
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-[6px]">
-                <div className="w-[10px] text-center text-[14px] font-medium leading-[18px] text-[#a3a3a3]">
+              <div className="flex items-center gap-[6px] min-w-0">
+                <div className="w-[10px] text-center text-[14px] font-medium leading-[18px] text-[#a3a3a3] shrink-0">
                   {leader.rank}
                 </div>
                 <img
                   src={leader.avatar}
                   alt={leader.name}
-                  className="w-[20px] h-[20px] rounded-[6px] object-cover"
+                  className="w-[20px] h-[20px] rounded-[6px] object-cover shrink-0"
                 />
-                <div className="text-[14px] font-medium leading-[18px] text-[#1f1f1f]">
+                <div className="text-[14px] font-medium leading-[18px] text-[#1f1f1f] truncate">
                   {leader.name}
                 </div>
               </div>
-              <div className="text-[14px] font-semibold leading-[18px] text-[#d18043]">
+              <div className="text-[14px] font-semibold leading-[18px] text-[#d18043] shrink-0">
                 {leader.count}
               </div>
             </div>
