@@ -3,13 +3,14 @@
 ## 🎯 Текущий спринт
 
 ### В работе
-- [ ] CRUD endpoints для Products
 - [ ] CRUD endpoints для Orders
+- [ ] Order items management
+- [ ] Order status workflow
 
 ### Следующие задачи
 - [ ] Тестирование API endpoints
-- [ ] Добавить фильтры и пагинацию
 - [ ] Создать сервисы для бизнес-логики
+- [ ] Добавить чаты и сообщения
 
 ---
 
@@ -59,21 +60,21 @@
 ### Приоритет 3: Каталог товаров (Важно)
 
 #### Product endpoints
-- [ ] POST /api/v1/products - создать товар
-- [ ] GET /api/v1/products - список товаров (с фильтрами)
-- [ ] GET /api/v1/products/{id} - получить товар
-- [ ] PATCH /api/v1/products/{id} - обновить товар
-- [ ] DELETE /api/v1/products/{id} - удалить товар
-- [ ] POST /api/v1/products/{id}/publish - опубликовать товар
+- ✅ POST /api/v1/products - создать товар
+- ✅ GET /api/v1/products - список товаров (с фильтрами)
+- ✅ GET /api/v1/products/{id} - получить товар
+- ✅ PATCH /api/v1/products/{id} - обновить товар
+- ✅ DELETE /api/v1/products/{id} - удалить товар
+- ✅ POST /api/v1/products/{id}/publish - опубликовать товар
 
 #### Product variants
-- [ ] POST /api/v1/products/{id}/variants - добавить вариант
-- [ ] GET /api/v1/products/{id}/variants - список вариантов
-- [ ] PATCH /api/v1/products/{id}/variants/{variant_id} - обновить
-- [ ] DELETE /api/v1/products/{id}/variants/{variant_id} - удалить
+- ✅ POST /api/v1/products/{id}/variants - добавить вариант
+- ✅ GET /api/v1/products/{id}/variants - список вариантов
+- ✅ PATCH /api/v1/products/{id}/variants/{variant_id} - обновить
+- ✅ DELETE /api/v1/products/{id}/variants/{variant_id} - удалить
 
 #### Product search
-- [ ] GET /api/v1/products/search - поиск товаров
+- ✅ GET /api/v1/products?search=query - поиск товаров
 - [ ] GET /api/v1/products/categories - список категорий
 - [ ] GET /api/v1/products/tags - популярные теги
 
