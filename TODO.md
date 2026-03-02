@@ -7,12 +7,15 @@
 - ✅ WebSocket для real-time коммуникации
 - ✅ Система уведомлений (10 endpoints)
 - ✅ Чертежи и файлы (загрузка, версионирование) (7 endpoints)
+- ✅ Email уведомления (Celery tasks) - 9 tasks
+- ✅ Аналитика и дашборды (7 endpoints)
+- ✅ Contractor marketplace (10 endpoints) - COMPLETE!
 
 ### Следующие задачи
-- ✅ Email уведомления (Celery tasks) - COMPLETE!
-- ✅ Аналитика и дашборды (API endpoints) - COMPLETE!
-- [ ] Contractor marketplace (биржа контрагентов)
 - [ ] Frontend разработка (React/Next.js)
+- [ ] Production deployment
+- [ ] CI/CD pipeline
+- [ ] Monitoring и logging
 
 ---
 
