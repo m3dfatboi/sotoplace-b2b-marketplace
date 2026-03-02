@@ -1,70 +1,103 @@
 @import "tailwindcss";
 
 :root {
-  /* Base Colors */
-  --color-black: #1f1f1f;
-  --color-white: #ffffff;
-  --color-furnita: #d18043;
-  --color-furnita-600: #a76636;
+  /* Primary Colors */
+  --primary-500: #d18043;
+  --primary-600: #a76636;
+  --primary-400: #e09a5f;
+  --primary-50: #fef6f0;
 
-  /* Gray Scale */
-  --color-gray-100: #f5f5f5;
-  --color-gray-200: #e5e5e5;
-  --color-gray-300: #d4d4d4;
-  --color-gray-400: #a3a3a3;
-  --color-gray-500: #737373;
-  --color-gray-600: #525252;
+  /* Neutrals */
+  --gray-950: #0a0a0a;
+  --gray-900: #1f1f1f;
+  --gray-700: #525252;
+  --gray-500: #737373;
+  --gray-400: #a3a3a3;
+  --gray-300: #d4d4d4;
+  --gray-200: #e5e5e5;
+  --gray-100: #f5f5f5;
+  --gray-50: #fafafa;
 
-  /* Status Colors */
-  --color-success: #67bb34;
-  --color-success-50: #f0f8eb;
-  --color-success-600: #52962a;
+  /* Semantic Colors */
+  --success-500: #67bb34;
+  --success-600: #52962a;
+  --success-50: #f0f8eb;
 
-  --color-error: #e03636;
-  --color-error-50: #ffeeee;
-  --color-error-600: #b32c2b;
+  --error-500: #e03636;
+  --error-600: #b32c2b;
+  --error-50: #ffeeee;
 
-  --color-process: #d0ad2f;
-  --color-process-100: #f6efd5;
-  --color-process-600: #a68a26;
+  --warning-500: #d0ad2f;
+  --warning-600: #a68a26;
+  --warning-50: #f6efd5;
+
+  --info-500: #3b82f6;
+  --info-600: #2563eb;
+  --info-50: #eff6ff;
 }
 
 @theme inline {
-  --color-background: var(--color-white);
-  --color-foreground: var(--color-black);
-  --color-primary: var(--color-furnita);
+  --color-primary-*: initial;
+  --color-success-*: initial;
+  --color-error-*: initial;
+  --color-warning-*: initial;
+  --color-info-*: initial;
+  --color-gray-*: initial;
+
+  --color-primary-500: var(--primary-500);
+  --color-primary-600: var(--primary-600);
+  --color-primary-400: var(--primary-400);
+  --color-primary-50: var(--primary-50);
+
+  --color-success-500: var(--success-500);
+  --color-success-600: var(--success-600);
+  --color-success-50: var(--success-50);
+
+  --color-error-500: var(--error-500);
+  --color-error-600: var(--error-600);
+  --color-error-50: var(--error-50);
+
+  --color-warning-500: var(--warning-500);
+  --color-warning-600: var(--warning-600);
+  --color-warning-50: var(--warning-50);
+
+  --color-info-500: var(--info-500);
+  --color-info-600: var(--info-600);
+  --color-info-50: var(--info-50);
+
   --font-sans: Inter, system-ui, sans-serif;
 }
 
-body {
-  background: var(--color-background);
-  color: var(--color-foreground);
-  font-family: var(--font-sans);
-  font-size: 14px;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Prevent content overflow in widgets */
 * {
   box-sizing: border-box;
 }
 
-/* Ensure text doesn't overflow containers */
-.text-ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Widget content should not overflow */
-[class*="Card"] {
-  overflow: hidden;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Ensure flex children don't overflow */
-.flex > * {
-  min-width: 0;
-  min-height: 0;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
 }

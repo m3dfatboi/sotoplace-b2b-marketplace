@@ -1,117 +1,88 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Icons } from "@/components/ui/icons";
+import { usePathname } from "next/navigation";
+import {
+  LayoutDashboard,
+  ShoppingCart,
+  Package,
+  Users,
+  FileText,
+  BarChart3,
+  Settings,
+  ChevronLeft,
+  ChevronRight
+} from "lucide-react";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 
-interface MenuItem {
-  icon: keyof typeof Icons;
-  href: string;
-  label: string;
-  badge?: number;
-}
-
-const topMenuItems: MenuItem[] = [
-  { icon: "Letter", href: "/messages", label: "Сообщения", badge: 5 },
-  { icon: "Bell", href: "/notifications", label: "Уведомления" },
-  { icon: "Truck", href: "/shipments", label: "Отгрузки", badge: 20 },
-  { icon: "Payin", href: "/payments", label: "Платежи", badge: 11 },
-];
-
-const bottomMenuItems: MenuItem[] = [
-  { icon: "Home", href: "/", label: "Главная" },
-  { icon: "Package", href: "/products", label: "Товары" },
-  { icon: "Users", href: "/companies", label: "Компании" },
-  { icon: "Chart", href: "/analytics", label: "Аналитика" },
-  { icon: "Documents", href: "/documents", label: "Документы" },
-  { icon: "Chat", href: "/chats", label: "Чаты" },
-  { icon: "Settings", href: "/settings", label: "Настройки" },
+const navigation = [
+  { name: "Dashboard", href: "/", icon: LayoutDashboard },
+  { name: "Orders", href: "/orders", icon: ShoppingCart },
+  { name: "Products", href: "/products", icon: Package },
+  { name: "Companies", href: "/companies", icon: Users },
+  { name: "Documents", href: "/documents", icon: FileText },
+  { name: "Analytics", href: "/analytics", icon: BarChart3 },
+  { name: "Settings", href: "/settings", icon: Settings },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="fixed right-0 top-0 h-screen w-[72px] flex flex-col justify-between p-[20px] gap-[20px]">
-      {/* Top Menu */}
-      <div className="bg-white border border-[#e5e5e5] rounded-[20px] p-[16px] flex flex-col gap-[4px]">
-        {/* Logo/Avatar */}
-        <div className="w-[40px] h-[40px] rounded-[8px] bg-[#d18043] flex items-center justify-center mb-[4px]">
-          <img
-            src="https://i.pravatar.cc/80?img=20"
-            alt="User"
-            className="w-full h-full rounded-[8px] object-cover"
-          />
-        </div>
-
-        {/* Divider */}
-        <div className="h-[14px] flex items-center justify-center py-[9px]">
-          <div className="h-[1px] w-full bg-[#e5e5e5] rounded-[10px]" />
-        </div>
-
-        {/* Top menu buttons */}
-        {topMenuItems.map((item, index) => {
-          const Icon = Icons[item.icon];
-          const isActive = pathname === item.href;
-
-          return (
-            <div key={item.href}>
-              <Link
-                href={item.href}
-                className={`relative w-[40px] h-[40px] rounded-[8px] flex items-center justify-center transition-colors ${
-                  isActive
-                    ? "bg-[#d18043] text-white"
-                    : "bg-white hover:bg-[#f5f5f5] text-[#1f1f1f]"
-                }`}
-                title={item.label}
-              >
-                <Icon />
-                {item.badge && (
-                  <div className="absolute -top-[6px] -right-[6px] min-w-[20px] h-[20px] px-[4px] bg-[#d18043] rounded-[12px] flex items-center justify-center">
-                    <span className="text-[12px] font-semibold leading-[14px] text-white">
-                      {item.badge}
-                    </span>
-                  </div>
-                )}
-              </Link>
-              {index === 1 && (
-                <div className="h-[14px] flex items-center justify-center py-[9px] my-[4px]">
-                  <div className="h-[1px] w-full bg-[#e5e5e5] rounded-[10px]" />
-                </div>
-              )}
+    <aside
+      className={cn(
+        "fixed left-0 top-0 h-screen bg-white border-r border-gray-200 transition-all duration-300 z-40",
+        collapsed ? "w-16" : "w-60"
+      )}
+    >
+      {/* Logo */}
+      <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200">
+        {!collapsed && (
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">S</span>
             </div>
-          );
-        })}
+            <span className="font-semibold text-gray-900">Sotoplace</span>
+          </Link>
+        )}
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+        >
+          {collapsed ? (
+            <ChevronRight className="w-5 h-5 text-gray-500" />
+          ) : (
+            <ChevronLeft className="w-5 h-5 text-gray-500" />
+          )}
+        </button>
       </div>
 
-      {/* Bottom Menu */}
-      <div className="bg-white border border-[#e5e5e5] rounded-[20px] p-[16px] flex flex-col gap-[4px]">
-        {bottomMenuItems.map((item, index) => {
-          const Icon = Icons[item.icon];
+      {/* Navigation */}
+      <nav className="p-3 space-y-1">
+        {navigation.map((item) => {
           const isActive = pathname === item.href;
+          const Icon = item.icon;
 
           return (
-            <div key={item.href}>
-              {(index === 3 || index === 5) && (
-                <div className="h-[14px] flex items-center justify-center py-[9px] my-[4px]">
-                  <div className="h-[1px] w-full bg-[#e5e5e5] rounded-[10px]" />
-                </div>
+            <Link
+              key={item.name}
+              href={item.href}
+              className={cn(
+                "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150",
+                isActive
+                  ? "bg-primary-50 text-primary-600 font-medium"
+                  : "text-gray-700 hover:bg-gray-100"
               )}
-              <Link
-                href={item.href}
-                className={`w-[40px] h-[40px] rounded-[8px] flex items-center justify-center transition-colors ${
-                  isActive
-                    ? "bg-[#d18043] text-white"
-                    : "bg-white hover:bg-[#f5f5f5] text-[#1f1f1f]"
-                }`}
-                title={item.label}
-              >
-                <Icon />
-              </Link>
-            </div>
+              title={collapsed ? item.name : undefined}
+            >
+              <Icon className="w-5 h-5 shrink-0" />
+              {!collapsed && <span className="text-sm">{item.name}</span>}
+            </Link>
           );
         })}
-      </div>
-    </div>
+      </nav>
+    </aside>
   );
 }
