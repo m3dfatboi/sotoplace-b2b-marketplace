@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
+import { Sidebar } from "@/components/layout/sidebar";
+import { Header } from "@/components/layout/header";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
@@ -19,7 +21,13 @@ export default function RootLayout({
     <html lang="ru">
       <body className={inter.className}>
         <Providers>
-          {children}
+          <div className="min-h-screen bg-neutral-50">
+            <Sidebar />
+            <Header />
+            <main className="ml-60 mt-16 transition-all duration-300">
+              {children}
+            </main>
+          </div>
         </Providers>
       </body>
     </html>

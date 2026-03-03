@@ -1,8 +1,8 @@
 """Company model"""
 
-from sqlalchemy import Boolean, Column, String, Text, ARRAY
+from sqlalchemy import Boolean, Column, String, Text, ARRAY, ForeignKey
 from sqlalchemy.orm import relationship
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import JSONB, UUID
 
 from app.models.base import BaseModel
 
@@ -60,8 +60,8 @@ class CompanySettings(BaseModel):
     __tablename__ = "company_settings"
 
     company_id = Column(
-        "company_id",
-        String,
+        UUID(as_uuid=True),
+        ForeignKey("companies.id"),
         nullable=False,
         unique=True,
     )

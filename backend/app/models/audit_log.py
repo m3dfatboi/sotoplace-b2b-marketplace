@@ -26,7 +26,7 @@ class AuditLog(BaseModel):
     # Details
     description = Column(Text, nullable=True)
     changes = Column(JSONB, default=dict, nullable=False)
-    metadata = Column(JSONB, default=dict, nullable=False)
+    log_metadata = Column(JSONB, default=dict, nullable=False)
 
     # Result
     status = Column(String(20), default="success", nullable=False)  # success, failure, partial

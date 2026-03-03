@@ -11,7 +11,7 @@ class ProductBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=255)
     description: str | None = None
     category: str | None = Field(None, max_length=100)
-    base_price: Decimal | None = Field(None, ge=0, decimal_places=2)
+    base_price: Decimal | None = Field(None, ge=0)
     price_type: str = Field(default="fixed", pattern="^(fixed|negotiable|custom)$")
     is_customizable: bool = False
     specifications: dict = Field(default_factory=dict)
@@ -28,7 +28,7 @@ class ProductUpdate(BaseModel):
     name: str | None = Field(None, min_length=1, max_length=255)
     description: str | None = None
     category: str | None = Field(None, max_length=100)
-    base_price: Decimal | None = Field(None, ge=0, decimal_places=2)
+    base_price: Decimal | None = Field(None, ge=0)
     price_type: str | None = Field(None, pattern="^(fixed|negotiable|custom)$")
     is_customizable: bool | None = None
     images: list[str] | None = None
@@ -54,9 +54,9 @@ class ProductVariantBase(BaseModel):
     """Base product variant schema"""
     name: str = Field(..., min_length=1, max_length=255)
     sku: str | None = Field(None, max_length=100)
-    price_modifier: Decimal = Field(default=0, decimal_places=2)
+    price_modifier: Decimal = Field(default=0)
     attributes: dict = Field(default_factory=dict)
-    stock_quantity: Decimal = Field(default=0, ge=0, decimal_places=2)
+    stock_quantity: Decimal = Field(default=0, ge=0)
 
 
 class ProductVariantCreate(ProductVariantBase):
@@ -68,9 +68,9 @@ class ProductVariantUpdate(BaseModel):
     """Schema for updating a product variant"""
     name: str | None = Field(None, min_length=1, max_length=255)
     sku: str | None = Field(None, max_length=100)
-    price_modifier: Decimal | None = Field(None, decimal_places=2)
+    price_modifier: Decimal | None = Field(None)
     attributes: dict | None = None
-    stock_quantity: Decimal | None = Field(None, ge=0, decimal_places=2)
+    stock_quantity: Decimal | None = Field(None, ge=0)
     is_available: bool | None = None
 
 

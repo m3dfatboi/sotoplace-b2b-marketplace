@@ -2,7 +2,12 @@
 
 from fastapi import APIRouter
 
-from app.api.v1 import analytics, auth, blueprints, chats, companies, contractors, health, notifications, orders, products, users, websocket
+# Disabled routers due to missing models/functions:
+# - analytics: CompanyAnalytics, OrderAnalytics, UserPerformance models missing
+# - contractors: CompanyRelationship model missing
+# - websocket: decode_access_token function missing
+
+from app.api.v1 import auth, blueprints, chats, companies, health, notifications, orders, products, users
 
 api_router = APIRouter()
 
@@ -15,7 +20,4 @@ api_router.include_router(orders.router)
 api_router.include_router(chats.router)
 api_router.include_router(notifications.router)
 api_router.include_router(blueprints.router)
-api_router.include_router(analytics.router)
-api_router.include_router(contractors.router)
 api_router.include_router(health.router)
-api_router.include_router(websocket.router)

@@ -38,7 +38,7 @@ class Order(BaseModel):
 
     # Metadata
     notes = Column(Text, nullable=True)
-    metadata = Column(JSONB, default=dict, nullable=False)
+    order_metadata = Column(JSONB, default=dict, nullable=False)
 
     # Relationships
     buyer_company = relationship("Company", foreign_keys=[buyer_company_id], back_populates="buyer_orders")

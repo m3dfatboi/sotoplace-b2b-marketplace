@@ -62,8 +62,8 @@ class OrderItemBase(BaseModel):
     """Base order item schema"""
     name: str = Field(..., min_length=1, max_length=255)
     description: str | None = None
-    quantity: Decimal = Field(..., gt=0, decimal_places=2)
-    unit_price: Decimal = Field(..., ge=0, decimal_places=2)
+    quantity: Decimal = Field(..., gt=0)
+    unit_price: Decimal = Field(..., ge=0)
     specifications: dict = Field(default_factory=dict)
 
 
@@ -79,8 +79,8 @@ class OrderItemUpdate(BaseModel):
     """Schema for updating an order item"""
     name: str | None = Field(None, min_length=1, max_length=255)
     description: str | None = None
-    quantity: Decimal | None = Field(None, gt=0, decimal_places=2)
-    unit_price: Decimal | None = Field(None, ge=0, decimal_places=2)
+    quantity: Decimal | None = Field(None, gt=0)
+    unit_price: Decimal | None = Field(None, ge=0)
     production_status: dict | None = None
     specifications: dict | None = None
     attachments: list[str] | None = None
