@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-sans",
-});
+import { Providers } from "@/lib/providers";
 
 export const metadata: Metadata = {
-  title: "Sotoplace - B2B Marketplace & ERP",
-  description: "Мультитенантная платформа для производственных и торговых компаний",
+  title: "Sotoplace - B2B Marketplace",
+  description: "Профессиональная B2B платформа для управления заказами и каталогом",
 };
 
 export default function RootLayout({
@@ -18,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={inter.variable}>
-      <body>
-        {children}
+    <html lang="ru">
+      <body className="antialiased">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

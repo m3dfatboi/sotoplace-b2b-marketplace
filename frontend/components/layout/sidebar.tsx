@@ -1,46 +1,44 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard,
   ShoppingCart,
   Package,
   Users,
-  FileText,
+  MessageSquare,
+  BarChart3,
   Settings,
-  Building2
-} from "lucide-react";
-import { cn } from "@/lib/utils";
+  LogOut
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { useAuth } from '@/lib/hooks/useAuth';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 
 const navigation = [
-  { name: "Главная", href: "/", icon: LayoutDashboard },
-  { name: "Заказы", href: "/orders", icon: ShoppingCart },
-  { name: "Каталог", href: "/catalog", icon: Package },
-  { name: "Контрагенты", href: "/contractors", icon: Users },
-  { name: "Чертежи", href: "/blueprints", icon: FileText },
-  { name: "Компания", href: "/company", icon: Building2 },
-  { name: "Настройки", href: "/settings", icon: Settings },
+  { name: 'Дашборд', href: '/dashboard', icon: LayoutDashboard },
+  { name: 'Заказы', href: '/orders', icon: ShoppingCart },
+  { name: 'Каталог', href: '/products', icon: Package },
+  { name: 'Контрагенты', href: '/contractors', icon: Users },
+  { name: 'Чаты', href: '/chat', icon: MessageSquare },
+  { name: 'Аналитика', href: '/analytics', icon: BarChart3 },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   return (
-    <aside className="fixed left-0 top-0 z-[var(--z-fixed)] h-screen w-64 border-r border-neutral-200 bg-white shadow-[1px_0_3px_0_rgb(0_0_0_/_0.04)]">
+    <div className="flex h-screen w-64 flex-col border-r bg-card">
       {/* Logo */}
-      <div className="flex h-16 items-center gap-3 border-b border-neutral-200 px-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary-600 to-primary-700 shadow-sm">
-          <Package className="h-5 w-5 text-white" />
-        </div>
-        <div>
-          <span className="text-lg font-semibold tracking-tight text-neutral-900">Sotoplace</span>
-          <p className="text-xs text-neutral-500">B2B Platform</p>
-        </div>
+      <div className="flex h-16 items-center border-b px-6">
+        <h1 className="text-xl font-bold text-primary">Sotoplace</h1>
       </div>
 
       {/* Navigation */}
-      <nav className="space-y-1 p-4">
+      <nav className="flex-1 space-y-1 px-3 py-4">
         {navigation.map((item) => {
           const isActive = pathname === item.href;
           return (
@@ -48,10 +46,11 @@ export function Sidebar() {
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-fast",
+                'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                'hover:bg-accent hover:text-accent-foreground cursor-pointer',
                 isActive
-                  ? "bg-primary-50 text-primary-700"
-                  : "text-neutral-700 hover:bg-neutral-100"
+                  ? 'bg-primary text-primary-foreground'
+                  : 'text-muted-foreground'
               )}
             >
               <item.icon className="h-5 w-5" />
@@ -60,6 +59,25 @@ export function Sidebar() {
           );
         })}
       </nav>
-    </aside>
+
+      <Separator />
+
+      {/* User section */}
+      <div className="p-4">
+        <div className="mb-3 rounded-lg bg-muted p-3">
+          <p className="text-sm font-medium">{user?.full_name}</p>
+          <p className="text-xs text-muted-foreground">{user?.email}</p>
+        </div>
+
+        <Button
+          variant="ghost"
+          className="w-full justify-start gap-2"
+          onClick={logout}
+        >
+          <LogOut className="h-4 w-4" />
+          Выйти
+        </Button>
+      </div>
+    </div>
   );
 }
