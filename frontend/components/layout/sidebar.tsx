@@ -8,77 +8,51 @@ import {
   Package,
   Users,
   FileText,
-  BarChart3,
   Settings,
-  ChevronLeft,
-  ChevronRight
+  Building2
 } from "lucide-react";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Orders", href: "/orders", icon: ShoppingCart },
-  { name: "Products", href: "/products", icon: Package },
-  { name: "Companies", href: "/companies", icon: Users },
-  { name: "Documents", href: "/documents", icon: FileText },
-  { name: "Analytics", href: "/analytics", icon: BarChart3 },
-  { name: "Settings", href: "/settings", icon: Settings },
+  { name: "Главная", href: "/", icon: LayoutDashboard },
+  { name: "Заказы", href: "/orders", icon: ShoppingCart },
+  { name: "Каталог", href: "/catalog", icon: Package },
+  { name: "Контрагенты", href: "/contractors", icon: Users },
+  { name: "Чертежи", href: "/blueprints", icon: FileText },
+  { name: "Компания", href: "/company", icon: Building2 },
+  { name: "Настройки", href: "/settings", icon: Settings },
 ];
 
 export function Sidebar() {
   const pathname = usePathname();
-  const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <aside
-      className={cn(
-        "fixed left-0 top-0 h-screen bg-white border-r border-gray-200 transition-all duration-300 z-40",
-        collapsed ? "w-16" : "w-60"
-      )}
-    >
+    <aside className="fixed left-0 top-0 z-[var(--z-fixed)] h-screen w-64 border-r border-neutral-200 bg-white">
       {/* Logo */}
-      <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200">
-        {!collapsed && (
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">S</span>
-            </div>
-            <span className="font-semibold text-gray-900">Sotoplace</span>
-          </Link>
-        )}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
-        >
-          {collapsed ? (
-            <ChevronRight className="w-5 h-5 text-gray-500" />
-          ) : (
-            <ChevronLeft className="w-5 h-5 text-gray-500" />
-          )}
-        </button>
+      <div className="flex h-16 items-center gap-2 border-b border-neutral-200 px-6">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600">
+          <Package className="h-5 w-5 text-white" />
+        </div>
+        <span className="text-lg font-semibold text-neutral-900">Sotoplace</span>
       </div>
 
       {/* Navigation */}
-      <nav className="p-3 space-y-1">
+      <nav className="space-y-1 p-4">
         {navigation.map((item) => {
           const isActive = pathname === item.href;
-          const Icon = item.icon;
-
           return (
             <Link
               key={item.name}
               href={item.href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150",
+                "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-fast",
                 isActive
-                  ? "bg-primary-50 text-primary-600 font-medium"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-primary-50 text-primary-700"
+                  : "text-neutral-700 hover:bg-neutral-100"
               )}
-              title={collapsed ? item.name : undefined}
             >
-              <Icon className="w-5 h-5 shrink-0" />
-              {!collapsed && <span className="text-sm">{item.name}</span>}
+              <item.icon className="h-5 w-5" />
+              {item.name}
             </Link>
           );
         })}

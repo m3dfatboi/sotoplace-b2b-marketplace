@@ -12,7 +12,7 @@ export default function DashboardLayout({
     <div className="min-h-screen bg-neutral-50">
       <Sidebar />
       <Header />
-      <main className="ml-60 mt-16 transition-all duration-300">
+      <main className="ml-64 mt-16 p-6">
         {children}
       </main>
     </div>

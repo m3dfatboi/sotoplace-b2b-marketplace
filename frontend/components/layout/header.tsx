@@ -1,39 +1,32 @@
 "use client";
 
-import { Search, Bell, User } from "lucide-react";
+import { Bell, Search, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function Header() {
   return (
-    <header className="h-16 bg-white border-b border-gray-200 fixed top-0 right-0 left-60 z-30 transition-all duration-300">
-      <div className="h-full px-6 flex items-center justify-between">
+    <header className="fixed left-64 right-0 top-0 z-[var(--z-sticky)] h-16 border-b border-neutral-200 bg-white">
+      <div className="flex h-full items-center justify-between px-6">
         {/* Search */}
-        <div className="flex-1 max-w-xl">
+        <div className="flex-1 max-w-md">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
             <input
-              type="text"
-              placeholder="Поиск заказов, товаров, компаний..."
-              className="w-full h-10 pl-10 pr-4 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+              type="search"
+              placeholder="Поиск по системе..."
+              className="h-10 w-full rounded-lg border border-neutral-300 bg-white pl-10 pr-4 text-sm transition-fast placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-0"
             />
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-3">
-          {/* Notifications */}
-          <button className="relative p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <Bell className="w-5 h-5 text-gray-600" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-error-500 rounded-full" />
-          </button>
-
-          {/* Profile */}
-          <button className="flex items-center gap-2 p-1.5 pr-3 hover:bg-gray-100 rounded-lg transition-colors">
-            <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-              <User className="w-4 h-4 text-primary-600" />
-            </div>
-            <span className="text-sm font-medium text-gray-700">Admin</span>
-          </button>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon">
+            <Bell className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon">
+            <User className="h-5 w-5" />
+          </Button>
         </div>
       </div>
     </header>
