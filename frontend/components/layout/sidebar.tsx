@@ -27,13 +27,16 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 z-[var(--z-fixed)] h-screen w-64 border-r border-neutral-200 bg-white">
+    <aside className="fixed left-0 top-0 z-[var(--z-fixed)] h-screen w-64 border-r border-neutral-200 bg-white shadow-[1px_0_3px_0_rgb(0_0_0_/_0.04)]">
       {/* Logo */}
-      <div className="flex h-16 items-center gap-2 border-b border-neutral-200 px-6">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600">
+      <div className="flex h-16 items-center gap-3 border-b border-neutral-200 px-6">
+        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-primary-600 to-primary-700 shadow-sm">
           <Package className="h-5 w-5 text-white" />
         </div>
-        <span className="text-lg font-semibold text-neutral-900">Sotoplace</span>
+        <div>
+          <span className="text-lg font-semibold tracking-tight text-neutral-900">Sotoplace</span>
+          <p className="text-xs text-neutral-500">B2B Platform</p>
+        </div>
       </div>
 
       {/* Navigation */}
