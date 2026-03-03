@@ -21,6 +21,7 @@ export interface Company {
   description?: string;
   inn?: string;
   website?: string;
+  logo?: string;
   created_at: string;
 }
 
