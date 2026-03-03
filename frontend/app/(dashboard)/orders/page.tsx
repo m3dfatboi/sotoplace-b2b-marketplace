@@ -112,73 +112,73 @@ export default function OrdersPage() {
       </div>
 
       {/* Table */}
-      <div className="rounded-xl border border-neutral-200 bg-white shadow-sm overflow-hidden">
+      <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-[0_1px_3px_0_rgb(0_0_0_/_0.06)]">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-neutral-50 border-b border-neutral-200">
+            <thead className="border-b border-neutral-200 bg-gradient-to-b from-neutral-50 to-neutral-50/50">
               <tr>
-                <th className="px-6 py-3 text-left">
-                  <button className="flex items-center gap-2 text-xs font-medium text-neutral-600 hover:text-neutral-900">
+                <th className="px-6 py-4 text-left">
+                  <button className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
                     Номер заказа
-                    <ArrowUpDown className="h-3 w-3" />
+                    <ArrowUpDown className="h-3.5 w-3.5" />
                   </button>
                 </th>
-                <th className="px-6 py-3 text-left">
-                  <button className="flex items-center gap-2 text-xs font-medium text-neutral-600 hover:text-neutral-900">
+                <th className="px-6 py-4 text-left">
+                  <button className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
                     Клиент
-                    <ArrowUpDown className="h-3 w-3" />
+                    <ArrowUpDown className="h-3.5 w-3.5" />
                   </button>
                 </th>
-                <th className="px-6 py-3 text-left">
-                  <span className="text-xs font-medium text-neutral-600">
+                <th className="px-6 py-4 text-left">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-600">
                     Статус
                   </span>
                 </th>
-                <th className="px-6 py-3 text-right">
-                  <button className="flex items-center gap-2 ml-auto text-xs font-medium text-neutral-600 hover:text-neutral-900">
+                <th className="px-6 py-4 text-right">
+                  <button className="flex items-center gap-2 ml-auto text-xs font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
                     Сумма
-                    <ArrowUpDown className="h-3 w-3" />
+                    <ArrowUpDown className="h-3.5 w-3.5" />
                   </button>
                 </th>
-                <th className="px-6 py-3 text-center">
-                  <span className="text-xs font-medium text-neutral-600">
+                <th className="px-6 py-4 text-center">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-600">
                     Позиций
                   </span>
                 </th>
-                <th className="px-6 py-3 text-left">
-                  <button className="flex items-center gap-2 text-xs font-medium text-neutral-600 hover:text-neutral-900">
+                <th className="px-6 py-4 text-left">
+                  <button className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-neutral-600 hover:text-neutral-900 transition-colors">
                     Создан
-                    <ArrowUpDown className="h-3 w-3" />
+                    <ArrowUpDown className="h-3.5 w-3.5" />
                   </button>
                 </th>
-                <th className="px-6 py-3 text-left">
-                  <span className="text-xs font-medium text-neutral-600">
+                <th className="px-6 py-4 text-left">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-600">
                     Срок
                   </span>
                 </th>
-                <th className="px-6 py-3 text-right">
-                  <span className="text-xs font-medium text-neutral-600">
+                <th className="px-6 py-4 text-right">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-600">
                     Действия
                   </span>
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-neutral-200">
+            <tbody className="divide-y divide-neutral-100">
               {orders.map((order) => (
                 <tr
                   key={order.id}
-                  className="hover:bg-neutral-50 transition-fast"
+                  className="group transition-colors hover:bg-neutral-50/50"
                 >
                   <td className="px-6 py-4">
                     <Link
                       href={`/orders/${order.id}`}
-                      className="font-mono text-sm font-medium text-primary-600 hover:text-primary-700"
+                      className="font-mono text-sm font-semibold text-primary-600 hover:text-primary-700 transition-colors"
                     >
                       {order.orderNumber}
                     </Link>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-neutral-900">
+                    <span className="text-sm font-medium text-neutral-900">
                       {order.customer}
                     </span>
                   </td>
@@ -188,12 +188,12 @@ export default function OrdersPage() {
                     </Badge>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <span className="text-sm font-medium text-neutral-900">
+                    <span className="text-sm font-semibold text-neutral-900">
                       {formatCurrency(order.amount)}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className="text-sm text-neutral-600">
+                    <span className="inline-flex items-center justify-center rounded-full bg-neutral-100 px-2.5 py-0.5 text-xs font-medium text-neutral-700">
                       {order.items}
                     </span>
                   </td>
@@ -208,14 +208,14 @@ export default function OrdersPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center justify-end gap-2">
-                      <Button variant="ghost" size="icon">
+                    <div className="flex items-center justify-end gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+                      <Button variant="ghost" size="icon" className="h-8 w-8">
                         <Eye className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="icon">
+                      <Button variant="ghost" size="icon" className="h-8 w-8">
                         <Edit className="h-4 w-4" />
                       </Button>
-                      <Button variant="ghost" size="icon">
+                      <Button variant="ghost" size="icon" className="h-8 w-8">
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
                     </div>
